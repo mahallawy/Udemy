@@ -1,0 +1,70 @@
+<html>
+
+<head>
+    <title>Java Script</title>
+    <style type="text/css">
+        #shape {
+            width: 200px;
+            height: 200px;
+            background-color: red;
+            display: none;
+            position: relative;
+            
+        }
+    
+    </style>
+
+</head>
+
+<body>
+    <h1>Test Your Reactions!</h1>
+    <p>Click on the boxes and circles as quickly as you can!</p>
+    <p>Your time: <span id="timeTaken"></span></p>
+    <div id="shape"></div>
+
+    <script type="text/javascript">
+        var start = new Date().getTime();
+        function randomColor () {
+           var letters = "0123456789ABCDEF".split("");
+           var color = "#";
+           for (var i = 0; i< 6; i++) {
+               color += letters[Math.floor(Math.random()*16)];
+           }
+           return color;
+        }
+        function makeShape () {
+            var top = Math.random() * 400;
+            var left = Math.random() * 400;
+            var width = (Math.random() * 200)+100;
+            var radius = Math.random() * 100;
+            document.getElementById("shape").style.backgroundColor = randomColor();
+            document.getElementById("shape").style.top = top +"px";
+            document.getElementById("shape").style.left = left +"px";
+            document.getElementById("shape").style.width = width +"px";
+            document.getElementById("shape").style.height = width +"px";
+            document.getElementById("shape").style.borderRadius = radius +"%";
+            document.getElementById("shape").style.display = "block";
+            start = new Date().getTime();
+        }
+        function appearAfter (){
+        setTimeout(makeShape, Math.random() * 1500);
+        };
+        appearAfter();
+       document.getElementById("shape").onclick = function () {
+           document.getElementById("shape").style.display = "none";
+           var end = new Date().getTime();
+           var timeTaken = (end -start) / 1000;
+          document.getElementById("timeTaken").innerHTML = timeTaken +"s";
+       appearAfter();
+       
+       
+       }
+    </script>
+
+
+
+
+
+</body>
+
+</html>
